@@ -1,0 +1,159 @@
+{%extends 'user/index.html'%}
+{%load static%}
+{%block body%}
+<!-- ============================================================== -->
+<div class="main-contentw-100">
+    <div class="">
+        <div class="container-fluid">
+            
+            <!-- end row -->
+            {%if msg%}
+            <script>
+                alert("Product Added Successfully...")
+                window.location.href = "/admin-dashboard"; 
+            </script>
+            {%endif%}
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 style="color:green;text-align:center;border:1px solid rgb(195, 187, 187);padding: 5px;background-color: rgb(248, 240, 255);">Add Details </h4>
+                            <form method="post" enctype="multipart/form-data">
+                                {%csrf_token%}
+                                <div class="row">                                 
+
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Enter Name"name="name" >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Phone<span class="text-danger" >*</span></label>
+                                            <input type="tel" class="form-control" placeholder="Phone"name="phone" pattern="[0-9]{10}" step="any">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Email<span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" placeholder="Email"name="email" step="any">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Address<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Address"name="address"  step="any">
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Image<span class="text-danger">*</span></label>
+                                            <input type="file" class="form-control" name="image" accept="image/jpeg, image/png" >
+                                            
+                                        </div>
+                                    </div>
+                                     
+                                    
+                                
+                                
+                                <h6 style="color:black;text-align:center;border:1px solid rgb(224, 219, 219);padding: 3px;background-color: rgb(248, 240, 255);">Product Price & Stock</h6>
+                                                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Education <span class="text-danger">*</span></label>
+                                        <textarea id='education' name="education" class="form-control" cols="30" rows="10" placeholder="Education" ></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Skills<span class="text-danger">*</span> </label>
+                                        <textarea id='skills' name="skills" class="form-control" cols="30" rows="10"  placeholder="Skills"  ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Internship <span class="text-danger">*</span></label>
+                                        <textarea id='internship' name="internship" class="form-control" cols="30" rows="10" placeholder="Internship" ></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Experience<span class="text-danger">*</span> </label>
+                                        <textarea id='experience' name="experience" class="form-control" cols="30" rows="10"  placeholder="Experience"  ></textarea>
+                                    </div>
+                                </div>
+                                                                
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Project <span class="text-danger">*</span></label>
+                                        <textarea id='project' name="project" class="form-control" cols="30" rows="10" placeholder="Project" ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Video 
+                                            <!-- <span class="text-danger">*</span> -->
+                                        </label>
+                                        <input type="file" class="form-control" name="video" accept="video/mp4, video/avi, video/mkv">
+                                    </div>
+                                </div>
+
+                                
+                                <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
+                                <script>
+                                    // Initialize CKEditor for each textarea
+                                    ClassicEditor
+                                        .create(document.querySelector('#education'))
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+
+                                    ClassicEditor
+                                        .create(document.querySelector('#skills'))
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+
+                                    ClassicEditor
+                                        .create(document.querySelector('#internship'))
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                    ClassicEditor
+                                    .create(document.querySelector('#experience'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                                    ClassicEditor
+                                    .create(document.querySelector('#project'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+
+                                </script>
+                               
+                                
+                                  
+                                  
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary text-center mt-4" style="padding:2px 50px;">Add</submit>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div> 
+    </div>
+    <!-- End Page-content -->
+
+    {%endblock%}

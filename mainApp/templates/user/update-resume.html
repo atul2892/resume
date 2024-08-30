@@ -1,0 +1,177 @@
+{%extends 'user/index.html'%}
+{%load static%}
+{%block body%}
+<!-- ============================================================== -->
+<div class="main-contentw-100">
+    <div class="">
+        <div class="container-fluid">
+            
+            <!-- end row -->
+            {%if msg%}
+            <script>
+                alert("Product Updated Successfully...")
+                window.location.href = "/user-dashboard"; 
+            </script>
+            {%endif%}
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 style="color:green;text-align:center;border:1px solid rgb(195, 187, 187);padding: 5px;background-color: rgb(248, 240, 255);">Update Your Resume </h4>
+                            <form method="post" enctype="multipart/form-data" class="form-control">
+                                {%csrf_token%}
+                                <div class="row">
+                                    
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Enter Name"name="name" value="{{data.name}}" >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Phone<span class="text-danger" >*</span></label>
+                                            <input type="tel" class="form-control" placeholder="Phone"name="phone" pattern="[0-9]{10}" step="any" value="{{data.phone}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Email<span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" placeholder="Email"name="email" step="any" value="{{data.email}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Address<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Address"name="address"  step="any" value="{{data.address}}">
+                                        </div>
+                                    </div>
+                                    
+                                    {%if data.image%}
+                                    <div class="col-lg-1">
+                                        <div class="mb-3">
+                                            <img src="{{data.image.url}}" style="height:50px;width:70px;margin-top:20px">
+                                        </div>
+                                    </div>
+                                    {%endif%}
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Image<span class="text-danger">*</span></label>
+                                            <input type="file" class="form-control" name="image" accept="image/jpeg, image/png" >
+                                            
+                                        </div>
+                                    </div>
+                                     
+                                    
+                                
+                                
+                                <h6 style="color:black;text-align:center;border:1px solid rgb(224, 219, 219);padding: 3px;background-color: rgb(248, 240, 255);">Product Price & Stock</h6>
+                                                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Education <span class="text-danger">*</span></label>
+                                        <textarea id='education' name="education" class="form-control" cols="30" rows="10" placeholder="Education" >{{data.education}}</textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Skills<span class="text-danger">*</span> </label>
+                                        <textarea id='skills' name="skills" class="form-control" cols="30" rows="10"  placeholder="Skills"  >{{data.skills}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Internship <span class="text-danger">*</span></label>
+                                        <textarea id='internship' name="internship" class="form-control" cols="30" rows="10" placeholder="Internship" >{{data.internship}}</textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Experience<span class="text-danger">*</span> </label>
+                                        <textarea id='experience' name="experience" class="form-control" cols="30" rows="10"  placeholder="Experience"  >{{data.experience}}</textarea>
+                                    </div>
+                                </div>
+                                                                
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Project <span class="text-danger">*</span></label>
+                                        <textarea id='project' name="project" class="form-control" cols="30" rows="10" placeholder="Project" >{{data.project}}</textarea>
+                                    </div>
+                                </div>
+
+                                {% if data.video %}
+                                    <div class="col-lg-5">
+                                        <div class="mb-3">
+                                            <!-- Use the video tag to display the video -->
+                                            <video width="320" height="240" controls>
+                                                <source src="{{ data.video.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Video 
+                                            <!-- <span class="text-danger">*</span> -->
+                                        </label>
+                                        <input type="file" class="form-control" name="video" accept="video/mp4, video/avi, video/mkv">
+                                    </div>
+                                </div>
+
+                                
+                                <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
+                                <script>
+                                    // Initialize CKEditor for each textarea
+                                    ClassicEditor
+                                        .create(document.querySelector('#education'))
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+
+                                    ClassicEditor
+                                        .create(document.querySelector('#skills'))
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+
+                                    ClassicEditor
+                                        .create(document.querySelector('#internship'))
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                    ClassicEditor
+                                    .create(document.querySelector('#experience'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                                    ClassicEditor
+                                    .create(document.querySelector('#project'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+
+                                </script>
+                               
+
+                                
+                                
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary text-center mt-4" style="padding:2px 50px;">Update</submit>
+                                </div>
+                            </form>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div> 
+    </div>
+    <!-- End Page-content -->
+
+    {%endblock%}
